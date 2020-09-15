@@ -1,5 +1,6 @@
 let base_url = "http://localhost/cl/handler.php";
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+var phoneno = /^\d{10}$/;
 
 function fillIt() {
     var url = base_url + "?req=retrieve";
@@ -46,7 +47,7 @@ $(document).on('submit', '.regForm', function(e) {
     var mobile = document.getElementById('mobile');
     var terms = document.getElementById('terms');
 
-    if (mailformat.test(email.value) == false || fname.value.length <= 3 || lname.value.length <= 3 || mobile.value.length != 10 || terms.checked == false) {
+    if (mobile.value.match(phoneno) == false || mailformat.test(email.value) == false || fname.value.length <= 3 || lname.value.length <= 3 || mobile.value.length != 10 || terms.checked == false) {
         alert("Form was not properly Filled");
     } else {
         var obj = JSON.stringify({ firstn: fname.value, lastn: lname.value, email: email.value, gender: gender.value, mobile: mobile.value });
